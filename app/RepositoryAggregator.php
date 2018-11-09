@@ -40,7 +40,12 @@ class RepositoryAggregator
 
         foreach ($projects as $project) {
 
-            $projectCommits = $this->gitlab->repositories()->commits($project['id']);
+            $projectCommits = $this->gitlab->repositories()->commits(
+                $project['id'],
+                [
+                    'ref_name' => 'develop',
+                ]
+            );
 
             if (count($projectCommits)) {
                 $mostRecentCommit = $projectCommits[0];

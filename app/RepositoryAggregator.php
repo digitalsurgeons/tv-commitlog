@@ -4,6 +4,8 @@ namespace App;
 
 use GrahamCampbell\GitLab\GitLabManager;
 use GrahamCampbell\GitHub\GitHubManager;
+use App\Representations\Commit;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App; // you probably have this aliased already
 
 class RepositoryAggregator
@@ -49,7 +51,17 @@ class RepositoryAggregator
 
             if (count($projectCommits)) {
                 $mostRecentCommit = $projectCommits[0];
-                $commits[] = $mostRecentCommit;
+
+                $gravatarUrl = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $mostRecentCommit['author_email'] ) ) ) . "&s=30";
+
+                $commit = new Commit;
+                $commit->setShortMessage($mostRecentCommit['title']);
+                $commit->setAuthorName($mostRecentCommit['author_name']);
+                $commit->setAvatar($gravatarUrl);
+                $commit->setProjectName($project['name']);
+                $commit->setTimestamp(new Carbon($mostRecentCommit['created_at']));
+
+                $commits[] = $commit->toArray();
             }
 
         }

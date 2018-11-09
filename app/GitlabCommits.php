@@ -14,14 +14,14 @@ class GitlabCommits
         $this->gitlab = $gitlab;
     }
 
-    public function getCommitsFromAllProjects($limit)
+    public function getCommitsFromAllProjects($limit = 5)
     {
         $projects = $this->gitlab->projects()->all(
             [
                 'order_by'   => 'updated_at',
                 'sort'       => 'desc',
                 'membership' => true,
-                'per_page'   => 5,
+                'per_page'   => $limit,
                 'simple'     => true,
             ]
         );

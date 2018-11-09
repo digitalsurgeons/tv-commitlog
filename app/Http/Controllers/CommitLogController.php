@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\GitlabCommits;
+use App\RepositoryAggregator;
 
 class CommitLogController extends Controller
 {
 
-    public function __construct(GitlabCommits $gitlabCommits)
+    public function __construct(RepositoryAggregator $repositoryAggregator)
     {
-        $this->gitlabCommits = $gitlabCommits;
+        $this->repositoryAggregator = $repositoryAggregator;
     }
 
     /**
@@ -18,7 +18,7 @@ class CommitLogController extends Controller
      */
     public function index()
     {
-        return $this->gitlabCommits->getCommitsFromAllProjects(5);
+        return $this->repositoryAggregator->aggregateRecentCommits(5);
     }
 
 }

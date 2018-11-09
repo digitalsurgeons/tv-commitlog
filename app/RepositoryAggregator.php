@@ -3,18 +3,28 @@
 namespace App;
 
 use GrahamCampbell\GitLab\GitLabManager;
+use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Support\Facades\App; // you probably have this aliased already
 
-class GitlabCommits
+class RepositoryAggregator
 {
     protected $gitlab;
+    protected $github;
 
-    public function __construct(GitLabManager $gitlab)
+    public function __construct(GitLabManager $gitlab, GitHubManager $github)
     {
         $this->gitlab = $gitlab;
+        $this->github = $github;
     }
 
-    public function getCommitsFromAllProjects($limit = 5)
+    public function aggregateRecentCommits($limit = 5)
+    {
+        $gitlabCommits = $this->getRecentGitlabCommits(20);
+
+        return array_slice($gitlabCommits, 0, $limit);
+    }
+
+    private function getRecentGitlabCommits($limit)
     {
         $projects = $this->gitlab->projects()->all(
             [
@@ -29,12 +39,21 @@ class GitlabCommits
         $commits = [];
 
         foreach ($projects as $project) {
+
             $projectCommits = $this->gitlab->repositories()->commits($project['id']);
-            $mostRecentCommit = $projectCommits[0];
-            $commits[] = $mostRecentCommit;
+
+            if (count($projectCommits)) {
+                $mostRecentCommit = $projectCommits[0];
+                $commits[] = $mostRecentCommit;
+            }
+
         }
 
         return $commits;
+    }
+
+    private function getRecentGithubCommits($limit)
+    {
     }
 }
 

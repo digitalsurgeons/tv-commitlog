@@ -35,6 +35,7 @@
 
         .card-avatar {
           margin-right: 10px;
+          width: 30px;
         }
 
         .card .card-content p.card-time {
@@ -46,7 +47,7 @@
         }
 
         .card-project {
-          margin-right: 10px;
+          margin-right: 5px;
         }
 
         .card-emoji {
@@ -72,9 +73,9 @@
         @foreach ($commits as $commit)
           <article class="card">
             <div class="card-content">
-              <h2 class="valign-wrapper card-author"><img src="http://i.pravatar.cc/30" class="circle card-avatar"><strong>{{ $commit['author_name'] }}</strong></h2>
-              <h3 class="valign-wrapper card-msg"><span class="card-emoji">⚡</span> <strong class="card-project">Project Name</strong> / {{ $commit['title'] }}</h3>
-              <p class="valign-wrapper card-time"><i class="material-icons">access_time</i> {{ $commit['committed_date'] }}</p>
+            <h2 class="valign-wrapper card-author"><img src="{{ $commit['avatar'] }}" class="circle card-avatar"><strong>{{ $commit['authorName'] }}</strong></h2>
+            <h3 class="valign-wrapper card-msg"><span class="card-emoji">⚡</span> <strong class="card-project">{{ $commit['projectName'] }}</strong> / {{ $commit['shortMessage'] }}</h3>
+              <p class="valign-wrapper card-time"><i class="material-icons">access_time</i> {{ $commit['timestamp'] }}</p>
             </div>
           </article>
         @endforeach

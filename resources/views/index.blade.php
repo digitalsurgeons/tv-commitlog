@@ -8,6 +8,25 @@
       <title>Laravel</title>
 
       <style>
+        html, body {
+          height: 100%;
+          width: 100%;
+        }
+
+        body {
+          background: url('https://source.unsplash.com/random?vaporwave,outrun,synthwave') no-repeat;
+          background-size: cover;
+          background-position: center center;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+        }
+
+        .container {
+          margin-bottom: 0;
+          width: 100%;
+        }
+
         .card-author {
           font-size: 18px;
           font-weight: bold;
@@ -41,10 +60,14 @@
         .card-msg {
           margin: 20px 0;
         }
+
+        .card {
+          opacity: .8;
+        }
       </style>
   </head>
   <body>
-    <section class="row">
+    <section class="container row">
       <div class="col s12">
         @foreach ($commits as $commit)
           <article class="card">

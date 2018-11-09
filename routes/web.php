@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/', function (\App\GitlabCommits $gitlab) {
+    $commits = $gitlab->getCommitsFromAllProjects(5);
+    return view('index', ['commits' => $commits]);
 });

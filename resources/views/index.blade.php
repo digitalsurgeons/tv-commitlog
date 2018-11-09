@@ -8,5 +8,9 @@
   </head>
   <body>
     <h1>Hello world</h1>
+
+    @foreach ($commits as $commit)
+      <p>{{ $commit['title'] }}</p>
+    @endforeach
   </body>
 </html>

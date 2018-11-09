@@ -41,17 +41,8 @@ return [
     'connections' => [
 
         'main' => [
-            'token'   => 'your-token',
-            'method'  => 'token',
-            // 'backoff' => false,
-            // 'cache'   => false,
-            // 'sudo'    => null,
-            // 'url'     => null,
-        ],
-
-        'alternative' => [
-            'token'   => 'your-token',
-            'method'  => 'oauth',
+            'token'   => env('GITLAB_TOKEN'),
+            'method'  => env('GITLAB_METHOD', 'token'),
             // 'backoff' => false,
             // 'cache'   => false,
             // 'sudo'    => null,

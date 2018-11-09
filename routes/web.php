@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function (\App\GitlabCommits $gitlab) {
-    $commits = $gitlab->getCommitsFromAllProjects(4);
+Route::get('/', function (\App\RepositoryAggregator $repo) {
+    $commits = $repo->aggregateRecentCommits(4);
     return view('index', ['commits' => $commits]);
 });

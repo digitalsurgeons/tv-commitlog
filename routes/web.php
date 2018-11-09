@@ -12,6 +12,6 @@
 */
 
 Route::get('/', function (\App\GitlabCommits $gitlab) {
-    $commits = $gitlab->getCommitsFromAllProjects(5);
+    $commits = $gitlab->getCommitsFromAllProjects(4);
     return view('index', ['commits' => $commits]);
 });

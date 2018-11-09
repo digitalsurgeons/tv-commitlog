@@ -3,14 +3,59 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
       <title>Laravel</title>
+
+      <style>
+        .card-author {
+          font-size: 18px;
+          font-weight: bold;
+          margin-top: 0;
+        }
+
+        .card-avatar {
+          margin-right: 10px;
+        }
+
+        .card .card-content p.card-time {
+          margin-top: 20px;
+        }
+
+        .card-time .material-icons {
+          margin-right: 10px;
+        }
+
+        .card-project {
+          margin-right: 10px;
+        }
+
+        .card-emoji {
+          margin-right: 10px;
+        }
+
+        .card-msg {
+          font-size: 20px;
+        }
+
+        .card-msg {
+          margin: 20px 0;
+        }
+      </style>
   </head>
   <body>
-    <h1>Hello world</h1>
-
-    @foreach ($commits as $commit)
-      <p>{{ $commit['title'] }}</p>
-    @endforeach
+    <section class="row">
+      <div class="col s12">
+        @foreach ($commits as $commit)
+          <article class="card">
+            <div class="card-content">
+              <h2 class="valign-wrapper card-author"><img src="http://i.pravatar.cc/30" class="circle card-avatar"><strong>{{ $commit['author_name'] }}</strong></h2>
+              <h3 class="valign-wrapper card-msg"><span class="card-emoji">⚡</span> <strong class="card-project">Project Name</strong> / {{ $commit['title'] }}</h3>
+              <p class="valign-wrapper card-time"><i class="material-icons">access_time</i> {{ $commit['committed_date'] }}</p>
+            </div>
+          </article>
+        @endforeach
+      </div>
+    </section>
   </body>
 </html>

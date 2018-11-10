@@ -52,6 +52,7 @@
 
         .card-emoji {
           margin-right: 5px;
+          transform: translateY(3px);
         }
 
         .card-msg {

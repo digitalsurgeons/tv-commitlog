@@ -7,6 +7,7 @@ use GrahamCampbell\GitHub\GitHubManager;
 use App\Representations\Commit;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App; // you probably have this aliased already
+use Illuminate\Support\Collection;
 
 class RepositoryAggregator
 {
@@ -23,10 +24,10 @@ class RepositoryAggregator
     {
         $gitlabCommits = $this->getRecentGitlabCommits(20);
 
-        return array_slice($gitlabCommits, 0, $limit);
+        return $gitlabCommits->take(5);
     }
 
-    private function getRecentGitlabCommits($limit)
+    private function getRecentGitlabCommits($limit): Collection
     {
         $projects = $this->gitlab->projects()->all(
             [
@@ -66,7 +67,7 @@ class RepositoryAggregator
 
         }
 
-        return $commits;
+        return collect($commits);
     }
 
     private function getRecentGithubCommits($limit)

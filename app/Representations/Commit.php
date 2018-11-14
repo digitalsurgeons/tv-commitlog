@@ -67,9 +67,9 @@ class Commit
         return [
             'shortMessage' => $this->getShortMessage(),
             'authorName'   => $this->getAuthorName(),
-            'avatar' => $this->getAvatar(),
-            'projectName' => $this->getProjectName(),
-            'timestamp' => $this->getTimestamp()->toRfc822String(),
+            'avatar'       => $this->getAvatar(),
+            'projectName'  => $this->getProjectName(),
+            'timestamp'    => $this->getTimestamp()->toRfc822String(),
         ];
     }
 }

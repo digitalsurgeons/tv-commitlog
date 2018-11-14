@@ -64,7 +64,7 @@ class RepositoryAggregator
                 $commit->setProjectName($project['name']);
                 $commit->setTimestamp(new Carbon($mostRecentCommit['created_at']));
 
-                $commits[] = $commit->toArray();
+                $commits[] = $commit;
             }
 
         }

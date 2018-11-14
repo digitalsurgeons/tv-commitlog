@@ -3,8 +3,9 @@
 namespace App\Representations;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Arrayable;
 
-class Commit
+class Commit implements Arrayable
 {
     protected $shortMessage;
     protected $authorName;

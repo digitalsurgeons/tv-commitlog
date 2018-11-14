@@ -5,9 +5,12 @@ namespace App;
 use GrahamCampbell\GitLab\GitLabManager;
 use GrahamCampbell\GitHub\GitHubManager;
 use App\Representations\Commit;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\App; // you probably have this aliased already
-use Illuminate\Support\Collection;
+use Illuminate\Support\{
+    Carbon,
+    Collection,
+    Facades\App,
+};
+//use Illuminate\Support\Facades\App; // you probably have this aliased already
 
 class RepositoryAggregator
 {
